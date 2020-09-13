@@ -16,14 +16,15 @@ describe('User Tests', () => {
         .post('/signup')
         .send(testUser)
         .set('Accept', 'application/json');
-      // Deletes the test user from the database
-      User.findOneAndDelete({ email: 'testuser@gmail.com' }, () => {
-        expect(user.email).toEqual(testUser.email);
-      });
+
+      expect(user.email).toEqual(testUser.email);
     });
   });
+
   // Closes the mongoose connection when all the tests have run
   afterAll((done) => {
-    mongoose.disconnect(done);
+    User.findOneAndDelete({ email: 'testuser@gmail.com' }, () => {
+      mongoose.disconnect(done);
+    });
   });
 });
