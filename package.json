@@ -1,15 +1,18 @@
 {
-  "name": "express-api-auth-template",
+  "name": "goal-game-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "a MERN goal app where you input your goals and go on adventures to progress towards them while earning exp and leveling up to earn rewards.",
   "main": "server.js",
   "scripts": {
     "test": "jest",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Goal Setting",
+    "Productivity"
+  ],
+  "author": "Chris Baird",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
