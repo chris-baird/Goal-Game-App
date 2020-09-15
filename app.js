@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { join } = require('path');
 const routes = require('./routes');
 const app = express();
 
@@ -17,12 +18,12 @@ mongoose.Promise = global.Promise;
 // Loading auth middleware
 require('./auth/auth');
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static('public'));
-
 // Loading bodyparser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+console.log(__dirname);
+// Serves up react app
+app.use(express.static(join(__dirname, '/client/build')));
 
 // Routes configuration
 app.use(routes);
