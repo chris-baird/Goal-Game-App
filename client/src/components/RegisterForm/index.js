@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import registerFormSchema from './RegisterFormSchema';
+import API from '../../API';
 
 function RegisterForm() {
   return (
@@ -8,12 +9,9 @@ function RegisterForm() {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={registerFormSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          const registeredUser = await API.registerUser(values);
+          console.log(registeredUser);
         }}
       >
         {({ isSubmitting }) => (
