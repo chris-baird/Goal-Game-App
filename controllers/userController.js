@@ -11,6 +11,7 @@ module.exports = {
   login: async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {
       try {
+        console.log(req.body);
         if (err || !user) {
           const error = new Error('An Error occurred');
           return next(error);

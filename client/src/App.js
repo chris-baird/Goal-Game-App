@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 
 function App() {
+  const [user, setUser] = useState(null);
   return (
     <Router>
       <div>
@@ -16,11 +17,12 @@ function App() {
             <li>
               <Link to="/register">Register</Link>
             </li>
+            {user && <span>Welcome{user.email}</span>}
           </ul>
         </nav>
         <Switch>
           <Route path="/register">
-            <Register />
+            <Register setUser={setUser} />
           </Route>
           <Route path="/">
             <Home />

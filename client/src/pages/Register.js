@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterForm from '../components/RegisterForm';
 
-function Register() {
-  return <RegisterForm />;
+function Register({ setUser }) {
+  return <RegisterForm setUser={setUser} />;
 }
 export default Register;

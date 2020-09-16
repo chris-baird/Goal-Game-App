@@ -3,15 +3,20 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import registerFormSchema from './RegisterFormSchema';
 import API from '../../API';
 
-function RegisterForm() {
+function RegisterForm(props) {
   return (
     <div>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={registerFormSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const registeredUser = await API.registerUser(values);
-          console.log(registeredUser);
+          try {
+            const { user } = await API.registerUser(values);
+            API.loginUser(values);
+            props.setUser(user);
+          } catch (error) {
+            if (error) throw error;
+          }
         }}
       >
         {({ isSubmitting }) => (
