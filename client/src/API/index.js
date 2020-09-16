@@ -13,7 +13,6 @@ export default {
     } = await axios.post('/login', user);
     this.setToken(token);
     axios.post('/login', user);
-    return;
   },
   setToken: (token) => {
     return localStorage.setItem('token', token);
