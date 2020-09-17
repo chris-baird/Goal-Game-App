@@ -1,11 +1,11 @@
 import React from "react";
 import RegisterForm from "../components/RegisterForm";
 
-function Register({ setUser }) {
+function Register({ setUser, user }) {
   return (
     <div>
       Register
-      <RegisterForm setUser={setUser} />
+      <RegisterForm user={user} setUser={setUser} />
     </div>
   );
 }

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { withRouter } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import userLoginSchema from "./LoginFormSchema";
 import API from "../../API";
 
-function LoginForm({ setUser }) {
+function LoginForm({ setUser, history, user }) {
+  useEffect(() => {
+    if (user) history.push("/dashboard");
+  }, [user]);
   return (
     <div>
       <Formik
@@ -13,6 +17,7 @@ function LoginForm({ setUser }) {
           try {
             const user = await API.loginUser(values);
             setUser(user);
+            history.push("/dashboard");
           } catch (error) {
             if (error) throw error;
           }
@@ -38,4 +43,4 @@ function LoginForm({ setUser }) {
   );
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

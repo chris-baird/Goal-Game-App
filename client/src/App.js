@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import WithAuth from "./components/WithAuth";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,11 +26,14 @@ function App() {
           </ul>
         </nav>
         <Switch>
+          <Route path="/dashboard">
+            <WithAuth user={user}>{() => <h1>Dashboard</h1>}</WithAuth>
+          </Route>
           <Route path="/register">
-            <Register setUser={setUser} />
+            <Register user={user} setUser={setUser} />
           </Route>
           <Route path="/">
-            <Home setUser={setUser} />
+            <Home user={user} setUser={setUser} />
           </Route>
         </Switch>
       </div>
