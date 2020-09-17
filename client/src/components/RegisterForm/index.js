@@ -3,10 +3,12 @@ import { withRouter } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import registerFormSchema from "./RegisterFormSchema";
 import API from "../../API";
+import Error from "../Error";
 
 function RegisterForm({ setUser, user, history }) {
   useEffect(() => {
-    if (user) history.push("/goalquest/dashboard");
+    console.log(user);
+    if (user) return history.push("/goalquest/dashboard");
   }, [user, history]);
   return (
     <div>
@@ -16,10 +18,10 @@ function RegisterForm({ setUser, user, history }) {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const { user } = await API.registerUser(values);
-            API.loginUser(values);
+            setSubmitting(false);
             setUser(user);
           } catch (error) {
-            if (error) throw error;
+            if (error) return <Error />;
           }
         }}
       >

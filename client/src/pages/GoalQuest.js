@@ -3,6 +3,7 @@ import { Route, Link, withRouter } from "react-router-dom";
 import API from "../API";
 import Forge from "./Forge";
 import Dashboard from "./Dashboard";
+import Error from "../components/Error";
 
 function GoalQuest({ email, match }) {
   const [userData, setUserData] = useState(null);
@@ -16,7 +17,7 @@ function GoalQuest({ email, match }) {
           setUserData(data);
         }
       } catch (error) {
-        if (error) return <p>Something Broke</p>;
+        if (error) return <Error />;
       }
     })();
   }, [userData, email]);

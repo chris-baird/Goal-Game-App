@@ -1,9 +1,9 @@
 import React from "react";
 
-function index({ error }) {
+function index() {
   return (
     <div>
-      <p>ERROR</p>
+      <p>ERROR SOMETHING BROKE</p>
     </div>
   );
 }

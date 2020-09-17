@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import userLoginSchema from "./LoginFormSchema";
 import API from "../../API";
+import Error from "../Error";
 
 function LoginForm({ setUser, history, user }) {
   useEffect(() => {
@@ -17,9 +18,10 @@ function LoginForm({ setUser, history, user }) {
           try {
             const user = await API.loginUser(values);
             setUser(user);
+            setSubmitting(false);
             history.push("/goalquest");
           } catch (error) {
-            if (error) throw error;
+            if (error) return <Error />;
           }
         }}
       >

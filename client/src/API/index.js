@@ -1,8 +1,12 @@
 import axios from "axios";
 export default {
   registerUser: async (newUser) => {
-    const { data } = await axios.post("/signup", newUser);
-    return data;
+    try {
+      const { data } = await axios.post("/signup", newUser);
+      return data;
+    } catch (error) {
+      return error;
+    }
   },
   loginUser: async function (user) {
     const {
