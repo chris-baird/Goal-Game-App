@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Register from './pages/Register';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
 
 function App() {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+    if (user) console.log(user);
+    // push url state to dashboard & pass user to dashboard
+  }, [user]);
   return (
     <Router>
       <div>
@@ -25,7 +29,7 @@ function App() {
             <Register setUser={setUser} />
           </Route>
           <Route path="/">
-            <Home />
+            <Home setUser={setUser} />
           </Route>
         </Switch>
       </div>

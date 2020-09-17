@@ -1,17 +1,18 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import userLoginSchema from './LoginFormSchema';
-import API from '../../API';
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import userLoginSchema from "./LoginFormSchema";
+import API from "../../API";
 
-function LoginForm() {
+function LoginForm({ setUser }) {
   return (
     <div>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={userLoginSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            API.loginUser(values);
+            const user = await API.loginUser(values);
+            setUser(user);
           } catch (error) {
             if (error) throw error;
           }

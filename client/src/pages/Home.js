@@ -1,11 +1,11 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 
-function Home() {
+function Home({ setUser }) {
   return (
     <div>
       Home
-      <LoginForm />
+      <LoginForm setUser={setUser} />
     </div>
   );
 }
