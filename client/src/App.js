@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import GoalQuest from './pages/GoalQuest';
-import WithAuth from './components/WithAuth';
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import GoalQuest from "./pages/GoalQuest";
+import WithAuth from "./components/WithAuth";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,7 +24,9 @@ function App() {
         </nav>
         <Switch>
           <Route path="/goalquest">
-            <WithAuth user={user}>{() => <GoalQuest {...user} />}</WithAuth>
+            <WithAuth user={user}>
+              {() => <GoalQuest email={user.email} />}
+            </WithAuth>
           </Route>
           <Route path="/register">
             <Register user={user} setUser={setUser} />

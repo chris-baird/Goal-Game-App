@@ -1,5 +1,4 @@
-import { PromiseProvider } from "mongoose";
-import React, { useState } from "react";
+import React from "react";
 
 function index({ children, user }) {
   return user ? children() : <h1>Unauthorized</h1>;

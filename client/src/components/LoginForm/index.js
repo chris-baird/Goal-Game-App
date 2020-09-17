@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { withRouter } from 'react-router';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import userLoginSchema from './LoginFormSchema';
-import API from '../../API';
+import React, { useEffect } from "react";
+import { withRouter } from "react-router";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import userLoginSchema from "./LoginFormSchema";
+import API from "../../API";
 
 function LoginForm({ setUser, history, user }) {
   useEffect(() => {
-    if (user) history.push('/goalquest');
-  }, [user]);
+    if (user) history.push("/goalquest/dashboard");
+  }, [user, history]);
   return (
     <div>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={userLoginSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const user = await API.loginUser(values);
             setUser(user);
-            history.push('/goalquest');
+            history.push("/goalquest");
           } catch (error) {
             if (error) throw error;
           }
