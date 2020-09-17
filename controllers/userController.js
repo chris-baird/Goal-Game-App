@@ -1,19 +1,20 @@
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const UserModel = require("../model/user");
 
 module.exports = {
   signUp: async (req, res) => {
     res.json({
-      message: 'Signup successful',
-      user: req.user || 'idk',
+      message: "Signup successful",
+      user: req.user || "idk",
     });
   },
   login: async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {
+    passport.authenticate("login", async (err, user, info) => {
       try {
         console.log(req.body);
         if (err || !user) {
-          const error = new Error('An Error occurred');
+          const error = new Error("An Error occurred");
           return next(error);
         }
         req.login(user, { session: false }, async (error) => {
@@ -30,5 +31,9 @@ module.exports = {
         return next(error);
       }
     })(req, res, next);
+  },
+  getUserData: async (req, res) => {
+    const data = await UserModel.findOne({ email: req.params.id });
+    res.json(data);
   },
 };

@@ -1,20 +1,29 @@
 import axios from "axios";
 export default {
   registerUser: async (newUser) => {
-    console.log("inside register");
     const { data } = await axios.post("/signup", newUser);
     return data;
   },
   loginUser: async function (user) {
-    console.log(user);
-    console.log("inside login");
     const {
       data: { token },
     } = await axios.post("/login", user);
     this.setToken(token);
     return user;
   },
+  getUserData: async function (email) {
+    const token = this.getToken();
+    const { data } = await axios.get(
+      `/user/profile/${email}/?secret_token=${token}`
+    );
+    return data;
+  },
+
   setToken: (token) => {
     return localStorage.setItem("token", token);
+  },
+
+  getToken: () => {
+    return localStorage.getItem("token");
   },
 };

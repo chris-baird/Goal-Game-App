@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "a MERN goal app where you input your goals and go on adventures to progress towards them while earning exp and leveling up to earn rewards.",
   "main": "server.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "test": "jest",
-    "start": "concurrently \"cd client && npm run start\" \"node server.js\""
+    "start": "concurrently \"cd client && npm run start\" \"nodemon server.js\""
   },
   "jest": {
     "testEnvironment": "node"
@@ -24,6 +27,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.4",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"

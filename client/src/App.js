@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 import WithAuth from "./components/WithAuth";
 
 function App() {
@@ -16,18 +17,16 @@ function App() {
       <div>
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
+            {/* Temp logout */}
+            <li>{user ? <a href="/">Logout</a> : <Link to="/">Home</Link>}</li>
             <li>
               <Link to="/register">Register</Link>
             </li>
-            {user && <span>Welcome{user.email}</span>}
           </ul>
         </nav>
         <Switch>
           <Route path="/dashboard">
-            <WithAuth user={user}>{() => <h1>Dashboard</h1>}</WithAuth>
+            <WithAuth user={user}>{() => <Dashboard {...user} />}</WithAuth>
           </Route>
           <Route path="/register">
             <Register user={user} setUser={setUser} />
