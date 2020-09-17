@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import GoalQuest from './pages/GoalQuest';
 import WithAuth from './components/WithAuth';
 
 function App() {
   const [user, setUser] = useState(null);
-  useEffect(() => {
-    if (user) console.log(user);
-    // push url state to dashboard & pass user to dashboard
-  }, [user]);
   return (
     <Router>
       <div>
@@ -27,8 +23,8 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Route path="/dashboard">
-            <WithAuth user={user}>{() => <Dashboard {...user} />}</WithAuth>
+          <Route path="/goalquest">
+            <WithAuth user={user}>{() => <GoalQuest {...user} />}</WithAuth>
           </Route>
           <Route path="/register">
             <Register user={user} setUser={setUser} />

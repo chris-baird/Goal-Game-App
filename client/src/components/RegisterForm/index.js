@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { withRouter } from "react-router";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import registerFormSchema from "./RegisterFormSchema";
-import API from "../../API";
+import React, { useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import registerFormSchema from './RegisterFormSchema';
+import API from '../../API';
 
 function RegisterForm({ setUser, user, history }) {
   useEffect(() => {
-    if (user) history.push("/dashboard");
+    if (user) history.push('/goalquest');
   }, [user]);
   return (
     <div>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: '', password: '' }}
         validationSchema={registerFormSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   withRouter,
-} from "react-router-dom";
-import API from "../API";
+} from 'react-router-dom';
+import API from '../API';
 function Sub() {
   return <h1>Forge Quests</h1>;
 }
 
-function Dashboard({ email, match }) {
+function GoalQuest({ email, match }) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -28,14 +28,15 @@ function Dashboard({ email, match }) {
   }, [userData]);
   return (
     <div>
-      Dashboard
-      <p>Welcome {email}</p>
+      <p>Welcome To Goal Quest {email}</p>
       <div>
         <h2>Actions</h2>
-        <Link to={`${match.url}/subtopic`}>Forge Quests</Link>
-        <Route path={`${match.path}/subtopic`} component={Sub} />
+        <Link to={`${match.url}`}>Dashboard</Link>
+        <Link to={`${match.url}/forge`}>Forge Quests</Link>
+        <Route path={`${match.path}/forge`} component={Sub} />
+        <Route path={`${match.path}/`} />
       </div>
     </div>
   );
 }
-export default withRouter(Dashboard);
+export default withRouter(GoalQuest);
