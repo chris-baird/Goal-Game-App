@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import WithAuth from "./components/WithAuth";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import WithAuth from './components/WithAuth';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,11 +17,13 @@ function App() {
       <div>
         <nav>
           <ul>
-            {/* Temp logout */}
+            {/* Temp logout may refactor*/}
             <li>{user ? <a href="/">Logout</a> : <Link to="/">Home</Link>}</li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
+            {!user && (
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            )}
           </ul>
         </nav>
         <Switch>
