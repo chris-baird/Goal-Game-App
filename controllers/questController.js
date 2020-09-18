@@ -1,6 +1,17 @@
 const UserModel = require("../model/user");
 
 module.exports = {
+  getQuests: async (req, res) => {
+    try {
+      const quests = await UserModel.findById(req.params.id)
+        .populate("quests")
+        .exec();
+      res.json({
+        message: "Quests retrieved",
+        quests: quests,
+      });
+    } catch (error) {}
+  },
   createQuest: async (req, res) => {
     try {
       const newQuest = await UserModel.findByIdAndUpdate(
