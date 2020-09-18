@@ -3,7 +3,6 @@ import { withRouter } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import userLoginSchema from "./LoginFormSchema";
 import API from "../../API";
-import Error from "../Error";
 
 function LoginForm({ setUser, history, user }) {
   useEffect(() => {
@@ -14,14 +13,18 @@ function LoginForm({ setUser, history, user }) {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={userLoginSchema}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, setErrors }) => {
           try {
             const user = await API.loginUser(values);
             setUser(user);
             setSubmitting(false);
             history.push("/goalquest");
           } catch (error) {
-            if (error) return <Error />;
+            setErrors({
+              email: "*Invalid Email or Password",
+              password: "*Invalid Email or Password",
+            });
+            return;
           }
         }}
       >

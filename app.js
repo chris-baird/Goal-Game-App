@@ -10,7 +10,7 @@ const app = express();
 require("dotenv").config();
 
 // Logger middleware
-morgan("tiny");
+morgan(":method :url :status :res[content-length] - :response-time ms");
 
 // Mongoose connection string
 mongoose.connect("mongodb://127.0.0.1:27017/passport-jwt");

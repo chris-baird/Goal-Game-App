@@ -3,11 +3,9 @@ import { withRouter } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import registerFormSchema from "./RegisterFormSchema";
 import API from "../../API";
-import Error from "../Error";
 
 function RegisterForm({ setUser, user, history }) {
   useEffect(() => {
-    console.log(user);
     if (user) return history.push("/goalquest/dashboard");
   }, [user, history]);
   return (
@@ -15,13 +13,16 @@ function RegisterForm({ setUser, user, history }) {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={registerFormSchema}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setErrors, setSubmitting }) => {
           try {
             const { user } = await API.registerUser(values);
             setSubmitting(false);
             setUser(user);
           } catch (error) {
-            if (error) return <Error />;
+            setErrors({
+              email: "*Email has been registered.",
+            });
+            return;
           }
         }}
       >
