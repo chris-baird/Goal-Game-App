@@ -1,7 +1,12 @@
 import React from "react";
+import QuestList from "../components/QuestList";
 
-function Forge() {
-  return <div>Inn</div>;
+function Inn({ userQuests }) {
+  return (
+    <div>
+      Inn <QuestList userQuests={userQuests} />
+    </div>
+  );
 }
 
-export default Forge;
+export default Inn;

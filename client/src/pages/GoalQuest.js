@@ -13,6 +13,7 @@ function GoalQuest({ email, match }) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+    console.log(userData);
     (async () => {
       try {
         if (!userData) {
@@ -36,7 +37,10 @@ function GoalQuest({ email, match }) {
         <Link to={`${match.url}/trophy-room`}>Trophy Room</Link>
         <Link to={`${match.url}/shop`}>Shop</Link>
         <Route path={`${match.path}/town-square`} component={TownSquare} />
-        <Route path={`${match.path}/inn`} component={Inn} />
+        <Route
+          path={`${match.path}/inn`}
+          render={() => <Inn userQuests={userData.quests} />}
+        />
         <Route path={`${match.path}/war-room`} component={WarRoom} />
         <Route path={`${match.path}/armory`} component={Armory} />
         <Route path={`${match.path}/trophy-room`} component={Trophy} />
