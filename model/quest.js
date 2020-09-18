@@ -46,4 +46,4 @@ const QuestSchema = new Schema({
 
 const QuestModel = mongoose.model("quest", QuestSchema);
 
-module.exports = QuestModel;
+module.exports = { QuestModel, QuestSchema };

@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
+const { QuestSchema } = require("./quest");
 
 const UserSchema = new Schema({
   email: {
@@ -12,10 +13,11 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  quests: [QuestSchema],
 });
 
 // Hashing password before user is saved in the database
-UserSchema.pre('save', async function (next) {
+UserSchema.pre("save", async function (next) {
   //'this' refers to the current document about to be saved
   const user = this;
   //Hash the password with a salt rounds
@@ -36,6 +38,6 @@ UserSchema.methods.isValidPassword = async function (password) {
   return compare;
 };
 
-const UserModel = mongoose.model('user', UserSchema);
+const UserModel = mongoose.model("user", UserSchema);
 
 module.exports = UserModel;
