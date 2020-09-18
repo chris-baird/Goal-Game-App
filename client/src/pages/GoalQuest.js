@@ -29,7 +29,6 @@ function GoalQuest({ email, match }) {
     <div>
       <p>Welcome To Goal Quest {email}</p>
       <div>
-        <h2>Actions</h2>
         <Link to={`${match.url}/town-square`}>Town Square</Link>
         <Link to={`${match.url}/inn`}>Inn</Link>
         <Link to={`${match.url}/war-room`}>War Room</Link>
