@@ -6,6 +6,7 @@ import TownSquare from "./TownSquare";
 import Armory from "./Armory";
 import Trophy from "./Trophy";
 import Shop from "./Shop";
+import WarRoom from "./WarRoom";
 import Error from "../components/Error";
 
 function GoalQuest({ email, match }) {
@@ -30,13 +31,15 @@ function GoalQuest({ email, match }) {
         <h2>Actions</h2>
         <Link to={`${match.url}/town-square`}>Town Square</Link>
         <Link to={`${match.url}/inn`}>Inn</Link>
+        <Link to={`${match.url}/war-room`}>War Room</Link>
         <Link to={`${match.url}/armory`}>Armory</Link>
-        <Link to={`${match.url}/trophy`}>Trophy Room</Link>
+        <Link to={`${match.url}/trophy-room`}>Trophy Room</Link>
         <Link to={`${match.url}/shop`}>Shop</Link>
         <Route path={`${match.path}/town-square`} component={TownSquare} />
         <Route path={`${match.path}/inn`} component={Inn} />
+        <Route path={`${match.path}/war-room`} component={WarRoom} />
         <Route path={`${match.path}/armory`} component={Armory} />
-        <Route path={`${match.path}/trophy`} component={Trophy} />
+        <Route path={`${match.path}/trophy-room`} component={Trophy} />
         <Route path={`${match.path}/shop`} component={Shop} />
       </div>
     </div>
