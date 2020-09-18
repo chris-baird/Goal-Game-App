@@ -5,9 +5,6 @@ import userLoginSchema from "./LoginFormSchema";
 import API from "../../API";
 
 function LoginForm({ setUser, history, user }) {
-  useEffect(() => {
-    if (user) history.push("/goalquest/dashboard");
-  }, [user, history]);
   return (
     <div>
       <Formik
@@ -18,7 +15,7 @@ function LoginForm({ setUser, history, user }) {
             const user = await API.loginUser(values);
             setUser(user);
             setSubmitting(false);
-            history.push("/goalquest");
+            history.push("/goalquest/town-square");
           } catch (error) {
             setErrors({
               email: "*Invalid Email or Password",

@@ -6,7 +6,7 @@ import API from "../../API";
 
 function RegisterForm({ setUser, user, history }) {
   useEffect(() => {
-    if (user) return history.push("/goalquest/dashboard");
+    if (user) return history.push("/goalquest/town-square");
   }, [user, history]);
   return (
     <div>
