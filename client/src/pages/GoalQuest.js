@@ -8,6 +8,7 @@ import WarRoom from "./WarRoom";
 import Error from "../components/Error";
 
 function GoalQuest({ email, match }) {
+  console.log("GOALQUEST HAS MOUNTED");
   const [userData, setUserData] = useState(null);
 
   const handleUpdateQuests = function (newQuest) {
