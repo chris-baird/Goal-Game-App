@@ -10,7 +10,7 @@ import Error from "../components/Error";
 function GoalQuest({ email, match }) {
   const [userData, setUserData] = useState(null);
 
-  const handleUpdateQuests = (newQuest) => {
+  const handleUpdateQuests = function (newQuest) {
     const newState = {
       ...userData,
       quests: [...userData.quests, newQuest],

@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 
 function Inn({ userId, userQuests, updateQuests }) {
   const [modal, setModal] = useState(false);
+  console.log(updateQuests);
 
   const toggle = () => setModal(!modal);
   return (
@@ -24,11 +25,11 @@ function Inn({ userId, userQuests, updateQuests }) {
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>Craft A Quest</ModalHeader>
           <ModalBody>
-            <QuestForm userId={userId} />
+            <QuestForm userId={userId} updateQuestList={updateQuests} />
           </ModalBody>
         </Modal>
         <Col xs={12} sm={12} md={10} lg={10}>
-          <QuestList userQuests={userQuests} updateQuests={updateQuests} />
+          <QuestList userQuests={userQuests} />
         </Col>
       </Row>
     </>

@@ -11,7 +11,8 @@ import { Formik, Form, ErrorMessage } from "formik";
 import QuestFormSchema from "./QuestFormSchema";
 import QuestAPI from "../../API/quest";
 
-function QuestForm({ userId, updateQuests }) {
+function QuestForm({ userId, updateQuestList }) {
+  console.log(updateQuestList);
   return (
     <div>
       <Formik
@@ -19,8 +20,9 @@ function QuestForm({ userId, updateQuests }) {
         validationSchema={QuestFormSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const newQuest = await QuestAPI.craftNewQuest(userId, values);
-            updateQuests(newQuest);
+            const createdQuest = await QuestAPI.craftNewQuest(userId, values);
+            console.log(updateQuestList);
+            updateQuestList(createdQuest);
           } catch (error) {
             console.log(error);
           }

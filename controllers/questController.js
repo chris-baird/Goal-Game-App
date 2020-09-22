@@ -14,8 +14,8 @@ module.exports = {
   },
   createQuest: async (req, res) => {
     try {
-      const newQuest = await UserModel.findByIdAndUpdate(
-        req.params.id,
+      const createdQuest = await UserModel.findByIdAndUpdate(
+        req.params.userId,
         {
           $push: {
             quests: req.body,
@@ -24,11 +24,14 @@ module.exports = {
         { safe: true, upsert: true }
       );
       res.json({
-        message: "Quest created",
-        quest: newQuest,
+        message: "Quest created successfully.",
+        createdQuest,
       });
     } catch (error) {
-      res.json(error);
+      res.json({
+        message: "Something went wrong. Try again.",
+        error,
+      });
     }
   },
 };
