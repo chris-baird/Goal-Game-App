@@ -2,42 +2,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const QuestSchema = new Schema({
-  questName: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  questDescription: {
+  description: {
     type: String,
     required: true,
   },
-  questCompleted: {
+  completed: {
     type: Boolean,
     required: true,
     default: false,
   },
-  questType: {
-    type: String,
-    required: true,
-  },
-  questDifficulty: {
+  difficulty: {
     type: Number,
     required: true,
   },
-  questRewardExp: {
-    type: Number,
-    required: true,
-  },
-  questRewardGold: {
-    type: Number,
-    required: true,
-  },
-  questCreationDate: {
+  creationDate: {
     type: Date,
     required: true,
     default: Date.now(),
   },
-  questMissionPoints: {
+  missionPoints: {
     type: Number,
     required: true,
     default: 0,
