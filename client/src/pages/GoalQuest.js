@@ -4,8 +4,6 @@ import API from "../API";
 import Inn from "./Inn";
 import TownSquare from "./TownSquare";
 import Armory from "./Armory";
-import Trophy from "./Trophy";
-import Shop from "./Shop";
 import WarRoom from "./WarRoom";
 import Error from "../components/Error";
 
@@ -33,8 +31,6 @@ function GoalQuest({ email, match }) {
         <Link to={`${match.url}/inn`}>Inn</Link>
         <Link to={`${match.url}/war-room`}>War Room</Link>
         <Link to={`${match.url}/armory`}>Armory</Link>
-        <Link to={`${match.url}/trophy-room`}>Trophy Room</Link>
-        <Link to={`${match.url}/shop`}>Shop</Link>
         <Route path={`${match.path}/town-square`} component={TownSquare} />
         <Route
           path={`${match.path}/inn`}
@@ -42,8 +38,6 @@ function GoalQuest({ email, match }) {
         />
         <Route path={`${match.path}/war-room`} component={WarRoom} />
         <Route path={`${match.path}/armory`} component={Armory} />
-        <Route path={`${match.path}/trophy-room`} component={Trophy} />
-        <Route path={`${match.path}/shop`} component={Shop} />
       </div>
     </div>
   );
