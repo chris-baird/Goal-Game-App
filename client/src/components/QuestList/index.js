@@ -12,7 +12,7 @@ function QuestList({ userQuests }) {
   }, [userQuests, quests]);
   return (
     <div>
-      <h3>Quest List</h3>
+      <h3>Quests</h3>
       {quests.map((quest) => {
         return <Quest key={quest._id} quest={quest} />;
       })}

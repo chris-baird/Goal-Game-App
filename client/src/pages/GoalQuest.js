@@ -10,6 +10,14 @@ import Error from "../components/Error";
 function GoalQuest({ email, match }) {
   const [userData, setUserData] = useState(null);
 
+  const handleUpdateQuests = (newQuest) => {
+    const newState = {
+      ...userData,
+      quests: [...userData.quests, newQuest],
+    };
+    setUserData(newState);
+  };
+
   useEffect(() => {
     console.log(userData);
     (async () => {
@@ -34,7 +42,13 @@ function GoalQuest({ email, match }) {
         <Route path={`${match.path}/town-square`} component={TownSquare} />
         <Route
           path={`${match.path}/inn`}
-          render={() => <Inn userQuests={userData.quests} />}
+          render={() => (
+            <Inn
+              userId={userData._id}
+              userQuests={userData.quests}
+              updateQuests={handleUpdateQuests}
+            />
+          )}
         />
         <Route path={`${match.path}/war-room`} component={WarRoom} />
         <Route path={`${match.path}/armory`} component={Armory} />
