@@ -4,10 +4,21 @@ const UserModel = require("../model/user");
 
 module.exports = {
   signUp: async (req, res) => {
-    res.json({
-      message: "Signup successful",
-      user: req.user || "idk",
-    });
+    try {
+      console.log("INSIDE USER CONTROLLER");
+      console.log(req.user.id);
+      const user = await UserModel.findByIdAndUpdate(req.user.id, {
+        newAccount: false,
+      });
+      console.log("UPDATED USER");
+      console.log(user);
+      res.json({
+        message: "Signup successful",
+        user: user || "idk",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
   login: async (req, res, next) => {
     passport.authenticate("login", async (err, user, info) => {

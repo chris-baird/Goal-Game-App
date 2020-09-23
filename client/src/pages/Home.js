@@ -1,12 +1,12 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 
-function Home({ setUser, user }) {
+function Home({ setUser }) {
   console.log("Home component mounted");
   return (
     <div>
       Home
-      <LoginForm user={user} setUser={setUser} />
+      <LoginForm setUser={setUser} />
     </div>
   );
 }

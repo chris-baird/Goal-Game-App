@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   FormGroup,
   Label,
@@ -11,18 +12,23 @@ import { Formik, Form, ErrorMessage } from "formik";
 import QuestFormSchema from "./QuestFormSchema";
 import QuestAPI from "../../API/quest";
 
-function QuestForm({ userId, updateQuestList }) {
-  console.log(updateQuestList);
+function QuestForm({ userId, updateQuestList, history }) {
+  console.log("QUEST FORM MOUNTED");
   return (
     <div>
       <Formik
         initialValues={{ name: "", description: "", difficulty: 1 }}
         validationSchema={QuestFormSchema}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
-            const createdQuest = await QuestAPI.craftNewQuest(userId, values);
-            console.log(updateQuestList);
-            updateQuestList(createdQuest);
+            const {
+              data: { quest },
+            } = await QuestAPI.craftNewQuest(userId, values);
+            resetForm({});
+            updateQuestList(quest);
+            // history.push("/goal-quest/inn");
+            setSubmitting(false);
+            return;
           } catch (error) {
             console.log(error);
           }
@@ -103,4 +109,4 @@ function QuestForm({ userId, updateQuestList }) {
   );
 }
 
-export default QuestForm;
+export default withRouter(QuestForm);

@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import QuestList from "../components/QuestList";
 import QuestForm from "../components/QuestForm";
-import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
 
 function Inn({ userId, userQuests, updateQuests }) {
-  const [modal, setModal] = useState(false);
-  console.log(updateQuests);
-
-  const toggle = () => setModal(!modal);
   return (
     <>
       <h2 className="text-center">Welcome To The Inn.</h2>
@@ -15,21 +11,15 @@ function Inn({ userId, userQuests, updateQuests }) {
         <Col xs={12} sm={12} md={2} lg={2}>
           <ul>
             <li>
-              <Button color="danger" onClick={toggle}>
-                {"Create A Quest"}
-              </Button>
+              <Button color="danger">{"Create A Quest"}</Button>
             </li>
           </ul>
         </Col>
-
-        <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Craft A Quest</ModalHeader>
-          <ModalBody>
-            <QuestForm userId={userId} updateQuestList={updateQuests} />
-          </ModalBody>
-        </Modal>
-        <Col xs={12} sm={12} md={10} lg={10}>
+        <Col xs={12} sm={12} md={8} lg={8}>
           <QuestList userQuests={userQuests} />
+        </Col>
+        <Col xs={12} sm={12} md={2} lg={2}>
+          <QuestForm userId={userId} updateQuestList={updateQuests} />
         </Col>
       </Row>
     </>

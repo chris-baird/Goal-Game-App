@@ -9,6 +9,11 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  newAccount: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   password: {
     type: String,
     required: true,
@@ -20,11 +25,15 @@ const UserSchema = new Schema({
 UserSchema.pre("save", async function (next) {
   //'this' refers to the current document about to be saved
   const user = this;
-  //Hash the password with a salt rounds
-  const hash = await bcrypt.hash(user.password, 10);
-  //Replace the plain text password with the hash and then store it
-  this.password = hash;
-  //Calls the next middleware
+  // Checks to see if the account is new before hashing password.
+  if (user.newAccount) {
+    //Hash the password with a salt rounds
+    const hash = await bcrypt.hash(user.password, 10);
+    //Replace the plain text password with the hash and then store it
+    this.password = hash;
+    //Calls the next middleware
+    next();
+  }
   next();
 });
 

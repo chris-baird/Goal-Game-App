@@ -7,11 +7,11 @@ import Armory from "./Armory";
 import WarRoom from "./WarRoom";
 import Error from "../components/Error";
 
-function GoalQuest({ email, match }) {
-  console.log("GOALQUEST HAS MOUNTED");
+function GoalQuest({ match, history }) {
   const [userData, setUserData] = useState(null);
 
   const handleUpdateQuests = function (newQuest) {
+    // New state object with old values spread on before new values are set.
     const newState = {
       ...userData,
       quests: [...userData.quests, newQuest],
@@ -19,11 +19,19 @@ function GoalQuest({ email, match }) {
     setUserData(newState);
   };
 
+  const handleLogout = () => {
+    const keysToRemove = ["email", "token"];
+    keysToRemove.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+    history.push("/");
+  };
+
   useEffect(() => {
-    console.log(userData);
     (async () => {
       try {
         if (!userData) {
+          const email = localStorage.getItem("email");
           const data = await API.getUserData(email);
           return setUserData(data);
         }
@@ -31,10 +39,12 @@ function GoalQuest({ email, match }) {
         if (error) return <Error />;
       }
     })();
-  }, [userData, email]);
+  }, [userData]);
+
   return (
     <div>
-      <p>Welcome To Goal Quest {email}</p>
+      <p>Welcome To Goal Quest</p>
+      <button onClick={handleLogout}>Logout</button>
       <div>
         <Link to={`${match.url}/town-square`}>Town Square</Link>
         <Link to={`${match.url}/inn`}>Inn</Link>

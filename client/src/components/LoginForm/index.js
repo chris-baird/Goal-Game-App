@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import userLoginSchema from "./LoginFormSchema";
 import API from "../../API";
 
-function LoginForm({ setUser, history, user }) {
+function LoginForm({ history }) {
   return (
     <div>
       <Formik
@@ -13,7 +13,7 @@ function LoginForm({ setUser, history, user }) {
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           try {
             const user = await API.loginUser(values);
-            setUser(user);
+            localStorage.setItem("email", user.email);
             setSubmitting(false);
             history.push("/goalquest/town-square");
           } catch (error) {

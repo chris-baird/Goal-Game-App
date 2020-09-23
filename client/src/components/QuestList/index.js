@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Quest from "../Quest/";
 
 function QuestList({ userQuests }) {
-  const [quests, setQuests] = useState([]);
-
-  useEffect(() => {
-    console.log(quests);
-    (async () => {
-      setQuests(userQuests);
-    })();
-  }, [userQuests, quests]);
   return (
     <div>
       <h3>Quests</h3>
-      {quests.map((quest) => {
+      {userQuests.map((quest) => {
         return <Quest key={quest._id} quest={quest} />;
       })}
     </div>
