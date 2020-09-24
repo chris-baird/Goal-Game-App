@@ -1,14 +1,32 @@
 import React from "react";
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Col,
+} from "reactstrap";
 
 function Quest({ quest }) {
   return (
-    <div>
-      <h3>Quest Name: {quest.name}</h3>
-      <p>Quest Description: {quest.description}</p>
-      <p>Quest Difficulty: {quest.difficulty}</p>
-      <p>Quest Complete: {quest.completed ? "Yes" : "No"}</p>
-      <p>Mission Points: {quest.missionPoints}Points</p>
-    </div>
+    <Col xs={12} sm={12} md={4} lg={4}>
+      <Card>
+        <span>{quest.difficulty}</span>
+        <CardBody>
+          <CardTitle>
+            <h4>{quest.name}</h4>
+          </CardTitle>
+          <CardSubtitle>
+            <em>Description</em>
+          </CardSubtitle>
+          <CardText>{quest.description}</CardText>
+          <Button color="warning">Edit</Button>
+          <Button color="danger">Delete</Button>
+        </CardBody>
+      </Card>
+    </Col>
   );
 }
 

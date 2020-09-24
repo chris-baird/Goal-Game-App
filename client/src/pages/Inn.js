@@ -11,16 +11,19 @@ function Inn({ userId, userQuests, updateQuests }) {
         <Col xs={12} sm={12} md={2} lg={2}>
           <ul>
             <li>
-              <Button color="danger">{"Create A Quest"}</Button>
+              <Button color="danger">{"View Quests"}</Button>
+            </li>
+            <li>
+              <Button color="danger">{"Create A New Quest"}</Button>
             </li>
           </ul>
         </Col>
-        <Col xs={12} sm={12} md={8} lg={8}>
+        <Col xs={12} sm={12} md={10} lg={10}>
           <QuestList userQuests={userQuests} />
         </Col>
-        <Col xs={12} sm={12} md={2} lg={2}>
+        {/* <Col xs={12} sm={12} md={2} lg={2}>
           <QuestForm userId={userId} updateQuestList={updateQuests} />
-        </Col>
+        </Col> */}
       </Row>
     </>
   );
