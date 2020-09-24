@@ -16,6 +16,7 @@ function QuestForm({ userId, updateQuestList, history }) {
   console.log("QUEST FORM MOUNTED");
   return (
     <div>
+      <h3>Create A New Quest</h3>
       <Formik
         initialValues={{ name: "", description: "", difficulty: 1 }}
         validationSchema={QuestFormSchema}

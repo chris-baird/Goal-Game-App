@@ -27,18 +27,21 @@ function Inn({ userId, userQuests, updateQuests }) {
       <Row>
         <Col xs={12} sm={12} md={2} lg={2}>
           <h3>Actions</h3>
-          <ul>
-            <li>
-              <Button onClick={() => setView("view-quests")} color="success">
-                {"View Quests"}
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => setView("new-quest")} color="success">
-                {"Create A New Quest"}
-              </Button>
-            </li>
-          </ul>
+          <Button
+            className="m-1"
+            onClick={() => setView("view-quests")}
+            color="info"
+          >
+            {"View Quests"}
+          </Button>
+
+          <Button
+            className="m-1"
+            onClick={() => setView("new-quest")}
+            color="info"
+          >
+            {"Create A Quest"}
+          </Button>
         </Col>
         {handleSetView(view)}
       </Row>
