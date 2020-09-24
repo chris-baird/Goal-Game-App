@@ -7,7 +7,6 @@ function Inn({ userId, userQuests, updateQuests }) {
   const [view, setView] = useState("view-quests");
 
   const handleSetView = (view) => {
-    console.log("inside");
     switch (view) {
       case "view-quests":
         return (
@@ -42,10 +41,6 @@ function Inn({ userId, userQuests, updateQuests }) {
           </ul>
         </Col>
         {handleSetView(view)}
-
-        {/* <Col xs={12} sm={12} md={2} lg={2}>
-          <QuestForm userId={userId} updateQuestList={updateQuests} />
-        </Col> */}
       </Row>
     </>
   );
